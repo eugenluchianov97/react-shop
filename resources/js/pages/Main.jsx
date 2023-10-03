@@ -1,21 +1,37 @@
-import Layout from "./Layout.jsx";
+import MainLayout from "./../layouts/MainLayout.jsx";
+import {useContext} from "react";
+import UserContext from "@/contexts/UserContext.js";
+import {logout} from "@/api.js";
+import {useNavigate} from "react-router-dom";
+import {LocalStorageRemoveItem} from "@/helper.js";
 
 export default () => {
+
+    const {user} = useContext(UserContext)
+    const navigate = useNavigate();
+
+    const submit = async (e) => {
+        e.preventDefault()
+
+        let res = await logout();
+
+        if(res.status === 200){
+            LocalStorageRemoveItem('token')
+            LocalStorageRemoveItem('user_obj')
+            navigate("/login")
+        }
+    }
     return (
-       <div className="container  border border-red-400 mx-auto flex justify-between">
+        <MainLayout>
+            <div className="container  border border-red-400 mx-auto flex justify-between">
+                {user.name}
 
-           <div>
-               <i className="fab fa-whatsapp text-4xl"></i>
-               <i className="fab fa-viber text-4xl"></i>
-               <i className="fas fa-phone text-3xl"></i>
-           </div>
 
-           <ul className="flex">
-               <li>Мой аккаунт</li>
-               <li>Политика конфиденциальности</li>
-               <li>Блог</li>
-           </ul>
-       </div>
+                <form onSubmit={submit}>
+                    <button >Выйти</button>
+                </form>
+            </div>
+        </MainLayout>
 
     );
 };

@@ -5,9 +5,28 @@
  */
 
 import axios from 'axios';
+import {LocalStorageGetItem} from "@/helper.js";
 window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+
+window.axios.interceptors.response.use({},err => {
+    if(err.response.status === 401 || err.response.status === 419 || err.response.status === 429){
+        const token = LocalStorageGetItem('token')
+        if(token){
+            localStorage.removeItem('TOKEN');
+        }
+        window.location.href = '/login';
+
+
+    }
+    if(err.response.status === 403){
+        window.location.href = '/login';
+
+    }
+    return err;
+})
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
