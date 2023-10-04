@@ -12,6 +12,7 @@ class LogoutController extends Controller
     {
         try {
             $request->user()->tokens()->delete();
+
             return response()->json([
                 'status' => true
             ], 200);

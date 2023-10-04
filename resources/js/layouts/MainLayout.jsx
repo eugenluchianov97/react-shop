@@ -5,14 +5,12 @@ import {me} from "@/api.js";
 import {Link} from "react-router-dom";
 
 export default  ({children}) => {
-    const {_setUser} = useContext(UserContext)
+    const {user,_setUser} = useContext(UserContext)
 
     useEffect(() => {
         async function fetchData() {
-            if(LocalStorageHasItem('token')){
 
-            }
-            else {
+            if (!user){
                 let res = await me();
 
                 if(res.status === 200){
@@ -20,18 +18,21 @@ export default  ({children}) => {
                     LocalStorageSetItem('user_obj',res.data.user)
                 }
             }
-
         }
+
         fetchData();
 
     },[])
 
     return (
-        <div className="">
-            <ul>
-                <li><Link to='/'>Home</Link></li>
-                <li><Link to='/blog'>Blog</Link></li>
-            </ul>
+        <div className="border border-red-500 absolute top-0 left-0 right-0 bottom-0">
+            <div className="bg-slate-800 ">
+                <ul>
+                    <li><Link to='/'>Home</Link></li>
+                    <li><Link to='/blog'>Blog</Link></li>
+                </ul>
+            </div>
+
             {children}
         </div>
     );

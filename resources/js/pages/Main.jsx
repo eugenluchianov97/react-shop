@@ -23,7 +23,7 @@ export default () => {
     }
     return (
         <MainLayout>
-            <div className="container  border border-red-400 mx-auto flex justify-between">
+            <div className="container bg-slate-800 text-white  mx-auto flex justify-between">
                 {user.name}
 
 

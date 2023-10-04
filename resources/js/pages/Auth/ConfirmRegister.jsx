@@ -3,11 +3,18 @@ import LoginLayout from "@/layouts/LoginLayout.jsx";
 import {Link} from "react-router-dom";
 
 import {registerConfirm} from "@/api.js";
-import {useState} from "react";
+import {useContext, useState} from "react";
 
 import {LocalStorageSetItem} from "@/helper.js";
 
+
+import translate from "./../../translates/auth/confirmRegister.js"
+
+import LangContext from "@/contexts/LangContext.js";
+
 export default () => {
+
+    const {lang} = useContext(LangContext)
 
     const [code, setCode] = useState('')
 
@@ -68,8 +75,8 @@ export default () => {
 
 
                 <div>
-                    <p className="font-bold text-slate-800 mb-1">Код подтверждения</p>
-                    <input  value={code} onChange={(e) => {setCode(e.target.value);setCodeEr([])}} type="text" placeholder="Код подтверждения" className={"w-full outline-none p-2 border " + (codeEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].codeConfirm}</p>
+                    <input  value={code} onChange={(e) => {setCode(e.target.value);setCodeEr([])}} type="text" placeholder={translate[lang].codeConfirm} className={"w-full outline-none p-2 border " + (codeEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {codeEr.length > 0 && (
                         <p className="text-red-400">{codeEr[0]}</p>
                     )}
@@ -77,10 +84,10 @@ export default () => {
                 </div>
 
 
-                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">Подтвердить регистрацию</button>
+                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">{translate[lang].confirmRegistration}</button>
 
                 <div className="flex justify-start">
-                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/login">Уже есть аккаунт?</Link>
+                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/login">{translate[lang].hasAccount}</Link>
                 </div>
 
             </form>

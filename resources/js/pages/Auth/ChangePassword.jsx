@@ -2,14 +2,11 @@
 import LoginLayout from "@/layouts/LoginLayout.jsx";
 import {Link, useNavigate} from "react-router-dom";
 import {useContext, useState} from "react";
-import {forgotPassword} from "@/api.js";
+import {resetPassword} from "@/api.js";
 
 
-import translate from "./../../translates/auth/forgotPassword.js"
+import translate from "./../../translates/auth/resetPassword.js"
 import LangContext from "@/contexts/LangContext.js";
-
-
-
 export default () => {
 
     const {lang} = useContext(LangContext)
@@ -17,8 +14,13 @@ export default () => {
     const navigate = useNavigate();
 
 
-    const [email, setEmail] = useState('')
-    const [emailEr, setEmailEr] = useState([])
+    const [code, setCode] = useState('')
+    const [password, setPassword] = useState('')
+    const [password_confirmation, setPasswordConfirmation] = useState('')
+
+    const [codeEr, setCodeEr] = useState([])
+    const [passwordEr, setPasswordEr] = useState([])
+    const [password_confirmationEr, setPasswordConfirmationEr] = useState([])
 
     const [loading, setLoading] = useState(false)
     const submit = async (e) => {
@@ -26,22 +28,31 @@ export default () => {
         setLoading(true);
 
         let data = {
-            email:email
+            code:code,
+            password:password,
+            password_confirmation:password_confirmation
         }
 
-        let res = await forgotPassword(data);
+        let res = await resetPassword(data);
 
         if(res.status === 200){
-            navigate("/reset-password")
+            navigate("/login")
         }
 
-        if(res.response && res.response.status === 422){
+        if(res.response && res.response.status === 422) {
 
             Object.entries(res.response.data.errors).map((er) => {
-                if(er[0] === 'email') {
-                    setEmailEr(er[1])
+                if(er[0] === 'code') {
+                    setCodeEr(er[1])
                 }
 
+                if(er[0] === 'password') {
+                    setPasswordEr(er[1])
+                }
+
+                if(er[0] === 'password_confirmation') {
+                    setPasswordConfirmationEr(er[1])
+                }
             })
         }
 
@@ -72,14 +83,30 @@ export default () => {
                 )}
 
                 <div>
-                    <p className="font-bold text-slate-800 mb-1">{translate[lang].login}</p>
-                    <input value={email} onChange={(e) => {setEmail(e.target.value);setEmailEr([])}} type="email" placeholder="Email" className={"w-full outline-none p-2 border " + (emailEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
-                    {emailEr.length > 0 && (
-                        <p className="text-red-400">{emailEr[0]}</p>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].confirmationCode}</p>
+                    <input value={code} onChange={(e) => {setCode(e.target.value);setCodeEr([])}} type="text" placeholder={translate[lang].confirmationCode} className={"w-full outline-none p-2 border " + (codeEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
+                    {codeEr.length > 0 && (
+                        <p className="text-red-400">{codeEr[0]}</p>
                     )}
                 </div>
 
-                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">{translate[lang].sendCode}</button>
+                <div>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].password}</p>
+                    <input value={password} onChange={(e) => {setPassword(e.target.value);setPasswordEr([])}} type="password" placeholder={translate[lang].password} className={"w-full outline-none p-2 border " + (passwordEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
+                    {passwordEr.length > 0 && (
+                        <p className="text-red-400">{passwordEr[0]}</p>
+                    )}
+                </div>
+
+                <div>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].password_confirmation}</p>
+                    <input value={password_confirmation} onChange={(e) => {setPasswordConfirmation(e.target.value);setPasswordConfirmationEr([])}} type="password" placeholder={translate[lang].password_confirmation} className={"w-full outline-none p-2 border " + (password_confirmationEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
+                    {password_confirmationEr.length > 0 && (
+                        <p className="text-red-400">{password_confirmationEr[0]}</p>
+                    )}
+                </div>
+
+                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">{translate[lang].changePassword}</button>
 
                 <div className="flex justify-between">
                     <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/login">{translate[lang].enter}</Link>

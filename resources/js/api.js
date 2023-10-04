@@ -85,3 +85,36 @@ export const me = async () => {
     })
 }
 
+
+export const forgotPassword = async (data) => {
+
+    const config = {
+        headers:{
+            "Accept":"application/json",
+        },
+        withCredentials: true
+    }
+
+    return await axios.post('/api/auth/forgot-password',data, config).then((res) => {
+        return res;
+    }).catch(err => {
+        return err
+    })
+}
+
+export const resetPassword = async (data) => {
+
+    const config = {
+        headers:{
+            "Accept":"application/json",
+        },
+        withCredentials: true
+    }
+
+    return await axios.post('/api/auth/reset-password',data, config).then((res) => {
+        return res;
+    }).catch(err => {
+        return err
+    })
+}
+

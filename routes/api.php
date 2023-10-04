@@ -12,6 +12,10 @@ Route::group(['prefix' =>'auth'], function(){
 
     Route::post('/register-confirm',\App\Http\Controllers\Auth\ConfirmRegisterController::class);
 
+    Route::post('/forgot-password',\App\Http\Controllers\Auth\ForgotController::class);
+
+    Route::post('/reset-password',\App\Http\Controllers\Auth\ResetPasswordController::class);
+
 
     Route::group(['middleware' => ['auth:sanctum']], function(){
         Route::post('/logout',\App\Http\Controllers\Auth\LogoutController::class);

@@ -7,11 +7,16 @@ import AlertContext from "@/contexts/AlertContext.js";
 import {login} from "./../../api.js"
 import UserContext from "@/contexts/UserContext.js";
 import {LocalStorageSetItem} from "@/helper.js";
+import LangContext from "@/contexts/LangContext.js";
+
+import translate from "./../../translates/auth/login.js"
 export default () => {
 
     const {_setUser} = useContext(UserContext)
 
     const { _setAlert} = useContext(AlertContext)
+
+    const {lang} = useContext(LangContext)
 
     const navigate = useNavigate();
 
@@ -90,7 +95,7 @@ export default () => {
                 )}
 
                 <div>
-                    <p className="font-bold text-slate-800 mb-1">Логин</p>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].login}</p>
                     <input value={email}  onChange={(e) => {setEmail(e.target.value);setEmailEr([]);setCredentialsEr([])}} type="text" placeholder="Email" className={"w-full outline-none p-2 border " + (emailEr.length > 0 || credentialsEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
                     {emailEr.length > 0 && (
                         <p className="text-red-400">{emailEr[0]}</p>
@@ -98,8 +103,8 @@ export default () => {
                 </div>
 
                 <div className="my-1">
-                    <p className="font-bold text-slate-800 mb-1">Пароль</p>
-                    <input value={password}  onChange={(e) => {setPassword(e.target.value);setPasswordEr([]);setCredentialsEr([])}} type="password" placeholder="Пароль" className={"w-full outline-none p-2 border " + (passwordEr.length > 0 || credentialsEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <p className="font-bold text-slate-800 mb-1">{translate[lang].password}</p>
+                    <input value={password}  onChange={(e) => {setPassword(e.target.value);setPasswordEr([]);setCredentialsEr([])}} type="password" placeholder={translate[lang].password} className={"w-full outline-none p-2 border " + (passwordEr.length > 0 || credentialsEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {passwordEr.length > 0 && (
                         <p className="text-red-400">{passwordEr[0]}</p>
                     )}
@@ -111,11 +116,11 @@ export default () => {
 
 
 
-                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">Войти</button>
+                <button type="submit" className="w-full bg-slate-800 mt-3 text-white font-bold outline-none border-none p-3">{translate[lang].enter}</button>
 
                 <div className="flex justify-between">
-                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/register">Регистрация</Link>
-                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/forgot-password">Забыли пароль?</Link>
+                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/register">{translate[lang].register}</Link>
+                    <Link className="font-bold text-slate-800 mt-1 cursor-pointer hover:underline" to="/forgot-password">{translate[lang].forgotPassword}</Link>
                 </div>
 
             </form>
