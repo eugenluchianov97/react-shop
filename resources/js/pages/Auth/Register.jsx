@@ -99,7 +99,7 @@ export default () => {
 
                 <div>
                     <p className="font-bold text-slate-800 mb-1">{translate[lang].name}</p>
-                    <input  value={name} onChange={(e) => {setName(e.target.value);setNameEr([])}} type="text" placeholder={translate[lang].name} className={"w-full outline-none p-2 border " + (nameEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <input  value={name} onChange={(e) => {setName(e.target.value);setNameEr([])}} type="text" placeholder={translate[lang].name} className={"w-full text-black outline-none p-2 border " + (nameEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {nameEr.length > 0 && (
                         <p className="text-red-400">{nameEr[0]}</p>
                     )}
@@ -108,7 +108,7 @@ export default () => {
 
                 <div className="my-1">
                     <p className="font-bold text-slate-800 mb-1">Email</p>
-                    <input value={email} onChange={(e) => {setEmail(e.target.value);setEmailEr([])}} type="email" placeholder="Email"  className={"w-full outline-none p-2 border " + (emailEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <input value={email} onChange={(e) => {setEmail(e.target.value);setEmailEr([])}} type="email" placeholder="Email"  className={"w-full text-black outline-none p-2 border " + (emailEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {emailEr.length > 0 && (
                         <p className="text-red-400">{emailEr[0]}</p>
                     )}
@@ -116,7 +116,7 @@ export default () => {
 
                 <div className="my-1">
                     <p className="font-bold text-slate-800 mb-1">{translate[lang].password}</p>
-                    <input value={password} onChange={(e) => {setPassword(e.target.value);setPasswordEr([])}} type="password" placeholder={translate[lang].password} className={"w-full outline-none p-2 border " + (passwordEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <input value={password} onChange={(e) => {setPassword(e.target.value);setPasswordEr([])}} type="password" placeholder={translate[lang].password} className={"w-full text-black outline-none p-2 border " + (passwordEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {passwordEr.length > 0 && (
                         <p className="text-red-400">{passwordEr[0]}</p>
                     )}
@@ -124,7 +124,7 @@ export default () => {
 
                 <div className="my-1">
                     <p className="font-bold text-slate-800 mb-1">{translate[lang].password_confirmation}</p>
-                    <input value={password_confirmation} onChange={(e) => {setPasswordConfirmation(e.target.value);setPasswordConfirmationEr([])}} type="password" placeholder={translate[lang].password_confirmation} className={"w-full outline-none p-2 border " + (password_confirmationEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <input value={password_confirmation} onChange={(e) => {setPasswordConfirmation(e.target.value);setPasswordConfirmationEr([])}} type="password" placeholder={translate[lang].password_confirmation} className={"w-full text-black outline-none p-2 border " + (password_confirmationEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {password_confirmationEr.length > 0 && (
                         <p className="text-red-400">{password_confirmationEr[0]}</p>
                     )}

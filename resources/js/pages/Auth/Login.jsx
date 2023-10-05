@@ -96,7 +96,7 @@ export default () => {
 
                 <div>
                     <p className="font-bold text-slate-800 mb-1">{translate[lang].login}</p>
-                    <input value={email}  onChange={(e) => {setEmail(e.target.value);setEmailEr([]);setCredentialsEr([])}} type="text" placeholder="Email" className={"w-full outline-none p-2 border " + (emailEr.length > 0 || credentialsEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
+                    <input value={email}  onChange={(e) => {setEmail(e.target.value);setEmailEr([]);setCredentialsEr([])}} type="text" placeholder="Email" className={"w-full text-black outline-none p-2 border " + (emailEr.length > 0 || credentialsEr.length > 0  ? "border-red-400" : "border-slate-300") }/>
                     {emailEr.length > 0 && (
                         <p className="text-red-400">{emailEr[0]}</p>
                     )}
@@ -104,7 +104,7 @@ export default () => {
 
                 <div className="my-1">
                     <p className="font-bold text-slate-800 mb-1">{translate[lang].password}</p>
-                    <input value={password}  onChange={(e) => {setPassword(e.target.value);setPasswordEr([]);setCredentialsEr([])}} type="password" placeholder={translate[lang].password} className={"w-full outline-none p-2 border " + (passwordEr.length > 0 || credentialsEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
+                    <input value={password}  onChange={(e) => {setPassword(e.target.value);setPasswordEr([]);setCredentialsEr([])}} type="password" placeholder={translate[lang].password} className={"w-full text-black outline-none p-2 border " + (passwordEr.length > 0 || credentialsEr.length > 0 ? "border-red-400" : "border-slate-300") }/>
                     {passwordEr.length > 0 && (
                         <p className="text-red-400">{passwordEr[0]}</p>
                     )}

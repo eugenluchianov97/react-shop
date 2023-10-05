@@ -6,7 +6,7 @@ import ConfirmRegister from "./pages/Auth/ConfirmRegister.jsx"
 import ForgotPassword from "./pages/Auth/ForgotPassword.jsx"
 import ChangePassword from "./pages/Auth/ChangePassword.jsx"
 import NotFound from "./pages/404.jsx"
-import Main from "./pages/Main.jsx"
+import Main from "./pages/Dashboard/Main.jsx"
 import Blog from "./pages/Blog.jsx"
 
 import * as ReactDOM from "react-dom/client";
