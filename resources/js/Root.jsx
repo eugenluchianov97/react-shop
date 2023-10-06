@@ -9,6 +9,16 @@ import NotFound from "./pages/404.jsx"
 import Main from "./pages/Dashboard/Main.jsx"
 import Blog from "./pages/Blog.jsx"
 
+import UserIndex from "./pages/User/Index.jsx"
+import UserCreate from "./pages/User/Create.jsx"
+
+import Posts from "./pages/Dashboard/Posts.jsx"
+import Profile from "./pages/Dashboard/Profile.jsx"
+
+
+import RoleIndex from "./pages/Role/Index.jsx"
+import RoleCreate from "./pages/Role/Create.jsx"
+
 import * as ReactDOM from "react-dom/client";
 
 import Alert from "@/components/Alert.jsx";
@@ -78,7 +88,18 @@ function Root() {
                                 <Route path="/forgot-password" element={<ForgotPassword />}/>
                                 <Route path="/reset-password" element={<ChangePassword />}/>
                                 <Route path="/" element={<Main />}/>
+                                <Route path="/account" element={<Profile />}/>
                                 <Route path="/blog" element={<Blog />}/>
+
+                                <Route path="/users" element={<UserIndex />}/>
+                                <Route path="/users/create" element={<UserCreate />}/>
+
+                                <Route path="/roles" element={<RoleIndex />}/>
+                                <Route path="/roles/create" element={<RoleCreate />}/>
+
+
+
+                                <Route path="/posts" element={<Posts />}/>
                                 <Route path="*" element={<NotFound />}/>
 
                             </Routes>

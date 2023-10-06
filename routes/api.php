@@ -16,9 +16,13 @@ Route::group(['prefix' =>'auth'], function(){
 
     Route::post('/reset-password',\App\Http\Controllers\Auth\ResetPasswordController::class);
 
-
     Route::group(['middleware' => ['auth:sanctum']], function(){
         Route::post('/logout',\App\Http\Controllers\Auth\LogoutController::class);
         Route::post('/me',\App\Http\Controllers\Auth\MeController::class);
     });
+});
+
+Route::group(['prefix' =>'roles'], function(){
+    Route::get('/',\App\Http\Controllers\Role\IndexController::class);
+    Route::post('/store',\App\Http\Controllers\Role\StoreController::class);
 });

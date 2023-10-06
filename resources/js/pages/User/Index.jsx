@@ -2,7 +2,7 @@ import MainLayout from "../../layouts/MainLayout.jsx";
 import {useContext} from "react";
 import UserContext from "@/contexts/UserContext.js";
 import {logout} from "@/api.js";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {LocalStorageRemoveItem} from "@/helper.js";
 
 export default () => {
@@ -25,7 +25,7 @@ export default () => {
         <MainLayout>
             <div className="row">
                 <div className="col-lg-12 my-3">
-                    <button type="button" className="btn btn-inverse-primary btn-fw">Добавить пользователя</button>
+                    <Link to="/users/create" className="btn btn-inverse-primary btn-fw">Добавить пользователя</Link>
                 </div>
                 <div className="col-lg-12 grid-margin stretch-card">
 

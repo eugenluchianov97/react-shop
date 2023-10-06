@@ -4,7 +4,8 @@ export default {
         settings:"Настройки",
         dashboard:"Главная",
         users:"Пользователи",
-        posts:"Посты"
+        posts:"Посты",
+        roles:"Роли"
 
     },
     en:{
@@ -12,6 +13,7 @@ export default {
         settings:"Settings",
         dashboard:"Dashboard",
         users:"Users",
-        posts:"Posts"
+        posts:"Posts",
+        roles:"Roles"
     }
 }

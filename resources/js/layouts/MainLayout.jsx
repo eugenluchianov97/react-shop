@@ -21,7 +21,7 @@ import {useContext, useEffect, useState} from "react";
 import UserContext from "@/contexts/UserContext.js";
 import {LocalStorageHasItem, LocalStorageRemoveItem, LocalStorageSetItem} from "@/helper.js";
 import {logout, me} from "@/api.js";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, NavLink, useNavigate} from "react-router-dom";
 import LangContext from "@/contexts/LangContext.js";
 
 import translate from "./../translates/layouts/mainLayout.js"
@@ -71,76 +71,43 @@ export default  ({children}) => {
         <div className={hidePanel ? "sidebar-icon-only" : ''}>
             <div className="container-scroller">
                 <nav className={"sidebar sidebar-offcanvas " + (hidePanel ? "active": "")} id="sidebar">
-                    <ul className="nav pt-0">
-                        <li className="nav-item profile">
-                            <div className="profile-desc">
-                                <div className="profile-pic">
-                                    <div className="profile-name">
-                                        <h5 className="mb-0 font-weight-normal">{user.name}</h5>
-                                    </div>
-                                </div>
-                                <div className="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list" aria-labelledby="profile-dropdown">
-                                    <a href="#" className="dropdown-item preview-item">
-                                        <div className="preview-thumbnail">
-                                            <div className="preview-icon bg-dark rounded-circle">
-                                                <i className="mdi mdi-settings text-primary"></i>
-                                            </div>
-                                        </div>
-                                        <div className="preview-item-content">
-                                            <p className="preview-subject ellipsis mb-1 text-small">Account settings</p>
-                                        </div>
-                                    </a>
-                                    <div className="dropdown-divider"></div>
-                                    <a href="#" className="dropdown-item preview-item">
-                                        <div className="preview-thumbnail">
-                                            <div className="preview-icon bg-dark rounded-circle">
-                                                <i className="mdi mdi-onepassword  text-info"></i>
-                                            </div>
-                                        </div>
-                                        <div className="preview-item-content">
-                                            <p className="preview-subject ellipsis mb-1 text-small">Change Password</p>
-                                        </div>
-                                    </a>
-                                    <div className="dropdown-divider"></div>
-                                    <a href="#" className="dropdown-item preview-item">
-                                        <div className="preview-thumbnail">
-                                            <div className="preview-icon bg-dark rounded-circle">
-                                                <i className="mdi mdi-calendar-today text-success"></i>
-                                            </div>
-                                        </div>
-                                        <div className="preview-item-content">
-                                            <p className="preview-subject ellipsis mb-1 text-small">To-do list</p>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
+                    <ul className="nav">
                         <li className="nav-item menu-items">
-                            <a className="nav-link" href="index.html">
-                            <span className="menu-icon">
-                                 <i className="mdi mdi-speedometer"></i>
-                            </span>
+                            <NavLink className={({ isActive }) => "nav-link " + (isActive ? 'bg-slate-800' : ' inactive')}  to="/">
+                                <span className="menu-icon">
+                                     <i className="mdi mdi-speedometer"></i>
+                                </span>
                                 <span className="menu-title">{translate[lang].dashboard}</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                         <li className="nav-item menu-items">
-                            <a className="nav-link" href="index.html">
-                            <span className="menu-icon">
-                                 <i className="mdi mdi-account-multiple"></i>
-                            </span>
+                            <NavLink className={({ isActive }) => "nav-link " + (isActive ? 'bg-slate-800' : ' inactive')}  to="/users">
+                                <span className="menu-icon">
+                                     <i className="mdi mdi-account-multiple"></i>
+                                </span>
                                 <span className="menu-title">{translate[lang].users}</span>
-                            </a>
+                            </NavLink>
+
                         </li>
 
                         <li className="nav-item menu-items">
-                            <a className="nav-link" href="http://www.bootstrapdash.com/demo/corona-free/jquery/documentation/documentation.html">
-                            <span className="menu-icon">
-                               <i className="mdi mdi-file-document-box"></i>
-                            </span>
+                            <NavLink className={({ isActive }) => "nav-link " + (isActive ? 'bg-slate-800' : ' inactive')}  to="/roles">
+                                <span className="menu-icon">
+                                     <i className="mdi mdi-account-multiple"></i>
+                                </span>
+                                <span className="menu-title">{translate[lang].roles}</span>
+                            </NavLink>
+
+                        </li>
+
+                        <li className="nav-item menu-items">
+                            <NavLink className={({ isActive }) => "nav-link " + (isActive ? 'bg-slate-800' : ' inactive')}  to="/posts">
+                                <span className="menu-icon">
+                                     <i className="mdi mdi-file-document-box"></i>
+                                </span>
                                 <span className="menu-title">{translate[lang].posts}</span>
-                            </a>
+                            </NavLink>
                         </li>
 
                     </ul>
@@ -171,8 +138,7 @@ export default  ({children}) => {
                                         </div>
                                     </a>
                                     <div className={"dropdown-menu dropdown-menu-right navbar-dropdown preview-list " + (hideProfile ? 'show' : "")}>
-
-                                        <a className="dropdown-item preview-item">
+                                        <NavLink className="dropdown-item preview-item "   to="/account">
                                             <div className="preview-thumbnail">
                                                 <div className="preview-icon bg-dark rounded-circle">
                                                     <i className="mdi mdi-settings text-success"></i>
@@ -181,15 +147,15 @@ export default  ({children}) => {
                                             <div className="preview-item-content">
                                                 <p className="preview-subject mb-1">{translate[lang].settings}</p>
                                             </div>
-                                        </a>
+                                        </NavLink>
                                         <div className="dropdown-divider"></div>
-                                        <a className="dropdown-item preview-item">
+                                        <a className="dropdown-item preview-item" onClick={submit}>
                                             <div className="preview-thumbnail">
                                                 <div className="preview-icon bg-dark rounded-circle">
                                                     <i className="mdi mdi-logout text-danger"></i>
                                                 </div>
                                             </div>
-                                            <div className="preview-item-content" onClick={submit}>
+                                            <div className="preview-item-content" >
                                                 <p className="preview-subject mb-1" >{translate[lang].logout}</p>
                                             </div>
                                         </a>

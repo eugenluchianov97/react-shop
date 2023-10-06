@@ -118,3 +118,21 @@ export const resetPassword = async (data) => {
     })
 }
 
+
+export const roleStore = async (data) => {
+
+    const config = {
+        headers:{
+            "Accept":"application/json",
+            "Authorization": "Bearer " + token(),
+        },
+        withCredentials: true
+    }
+
+    return await axios.post('/api/roles/store',data, config).then((res) => {
+        return res;
+    }).catch(err => {
+        return err
+    })
+}
+
