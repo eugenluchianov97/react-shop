@@ -136,3 +136,43 @@ export const roleStore = async (data) => {
     })
 }
 
+export const roleIndex = async (page = 1, search = '') => {
+
+    let url = '/api/roles?page=' + page
+
+    if(search !== ''){
+        url += '&q='+search
+    }
+
+    const config = {
+        headers:{
+            "Accept":"application/json",
+            "Authorization": "Bearer " + token(),
+        },
+        withCredentials: true
+    }
+
+    return await axios.get(url, config).then((res) => {
+        return res;
+    }).catch(err => {
+        return err
+    })
+}
+
+export const roleShow = async (id) => {
+
+    const config = {
+        headers:{
+            "Accept":"application/json",
+            "Authorization": "Bearer " + token(),
+        },
+        withCredentials: true
+    }
+
+    return await axios.get('/api/roles/'+ id + '/edit', config).then((res) => {
+        return res;
+    }).catch(err => {
+        return err
+    })
+}
+

@@ -18,6 +18,7 @@ import Profile from "./pages/Dashboard/Profile.jsx"
 
 import RoleIndex from "./pages/Role/Index.jsx"
 import RoleCreate from "./pages/Role/Create.jsx"
+import RoleEdit from "./pages/Role/Edit.jsx"
 
 import * as ReactDOM from "react-dom/client";
 
@@ -96,6 +97,7 @@ function Root() {
 
                                 <Route path="/roles" element={<RoleIndex />}/>
                                 <Route path="/roles/create" element={<RoleCreate />}/>
+                                <Route path="/roles/:id/edit" element={<RoleEdit />}/>
 
 
 

@@ -1,7 +1,7 @@
 import MainLayout from "../../layouts/MainLayout.jsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import UserContext from "@/contexts/UserContext.js";
-import {roleStore} from "@/api.js";
+import {roleShow} from "@/api.js";
 import {useNavigate} from "react-router-dom";
 import {LocalStorageRemoveItem} from "@/helper.js";
 import AlertContext from "@/contexts/UserContext.js";
@@ -21,6 +21,17 @@ export default () => {
     const [laoding, setLoading] =  useState(false);
 
 
+    useEffect(() => {
+        role()
+    },[])
+
+    const role = async () => {
+        let res = await roleShow(this.props.match.params.id);
+
+        if(res.status === 200) {
+
+        }
+    }
 
     const submit = async (e) => {
         e.preventDefault()
@@ -29,7 +40,7 @@ export default () => {
             name:name,
             description:description
         }
-        let res = await roleStore(data);
+        let res = await roleShow(this.props.match.params.id);
 
         if(res.status === 200){
             navigate('/roles')
@@ -78,7 +89,7 @@ export default () => {
 
                         )}
                         <div className="card-body">
-                            <h4 className="card-title">Создать роль</h4>
+                            <h4 className="card-title">Редактировать роль</h4>
                             <form onSubmit={submit} className="forms-sample">
                                 <div className="form-group">
                                     <label htmlFor="exampleInputUsername1">Название</label>
@@ -97,7 +108,7 @@ export default () => {
                                 </div>
 
 
-                                <button type="submit" className="btn btn-primary me-2">Submit</button>
+                                <button type="submit" className="btn btn-primary me-2">Сохранить</button>
                             </form>
                         </div>
                     </div>
